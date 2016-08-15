@@ -75,13 +75,8 @@ WSGI_APPLICATION = 'careerhelper.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'careerhelper',
-        'USER': 'postgres',
-        'PASSWORD': 'relaxationmode',
-        'HOST': '',
-        'OPTIONS': {
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': '/home/admin/careerhelper/careerhelper.db',
     }
 }
 
