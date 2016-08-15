@@ -76,8 +76,11 @@ WSGI_APPLICATION = 'careerhelper.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'careerhelper',
+        'USER': 'postgres',
+        'PASSWORD': 'relaxationmode',
+        'HOST': '',
         'OPTIONS': {
-            'read_default_file': '../../etc/postgresql.conf'
         }
     }
 }
@@ -107,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Halifax'
 
 USE_I18N = True
 
