@@ -37,7 +37,7 @@
 	{% for major_group in major_groups %}
 	{% for minor_group in major_group.minor_groups %}
 	{% for broad_group in minor_group.broad_groups %}
-	<select id="detailed_occupation"> <!--Not required for ease of UX-->
+	<select id="detailed_occupation"> <!--Not required for ease of UX->
 		{% for category in broad_group.detailed_occupations %}
 		<option value="{{category.code}}">{{category.prettyname}}</option>
 		{% endfor %}
