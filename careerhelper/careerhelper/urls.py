@@ -20,6 +20,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     url(r'^app/', include('careerapp.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^dropdown/', include('dropdown.urls'))
 ]
 
 urlpatterns += staticfiles_urlpatterns()
