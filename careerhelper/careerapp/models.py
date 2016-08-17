@@ -8,40 +8,37 @@ class Scale(models.Model):
     min = models.IntegerField()
     max = models.IntegerField()
 
-class JobRaw(models.Model):
-    code = models.CharField(primary_key=True)
-    title = models.CharField()
-    description = models.CharField()
-
-class JobGroup(models.Model):
+class SOCEntity(models.Model):
     code = models.CharField(primary_key=True)
     name = models.CharField()
+    description = models.CharField()
 
-class Job(JobRaw):
-    majorgroup = models.ForeignKey('JobGroup')
-    minorgroup = models.ForeignKey('JobGroup')
-    broadgroup = models.ForeignKey('JobGroup')
+class JobGroup(SOCEntity):
+    def isaMajorGroup():
+        return code[-4:] == "0000"
+    def isaMinorGroup():
+        return code[-3:] == "000"
+    def isaBroadGroup():
+        return code[-1:] == "0":
+    pass
 
-    def evalgroups():
-        self.majorgroup = getmajorgroup()
-        self.minorgroup = getminorgroup()
-        self.broadgroup = getbroadgroup()
-        self.save()
+class MajorGroup(JobGroup):
+    pass
 
-    def getmajorgroup():
-        return JobGroup.get(code=(self.code[:2] + "-0000"))
+class MinorGroup(JobGroup):
+    majorgroup = models.ForeignKey('MajorGroup')
 
-    def getminorgroup():
-        return JobGroup.get(code=(self.code[:4] + "000"))
+class BroadGroup(JobGroup):
+    minorgroup = models.ForeignKey('MinorGroup')
 
-    def getbroadgroup():
-        return 
+class Job(SOCEntity):
+    broadgroup = models.ForeignKey('BroadGroup')
 
 class EducationRaw(models.Model):
     code = models.CharField(primary_key=True)
     title = models.CharField()
     description = models.CharField()
-    crosscode = ??????
+    #crosscode = ?????? #determine this if needed
 
 class WorkerQuality(models.Model):
     code = models.CharField(primary_key=True)
@@ -67,7 +64,7 @@ class MindsumoSample(models.Model):
 class MindsumoCellRaw(models.Model):
     jobcode = models.ForeignKey('Job')
     sample = models.CharField()
-    education = models.ForeignKey('Education')
+    education = models.ForeignKey('EducationRaw')
     n = models.ForeignKey('MindsumoSample') 
 
 class JobRelation(models.Model):
