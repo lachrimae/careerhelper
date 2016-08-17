@@ -8,7 +8,6 @@
 
 <form action="/job-desired/" method="post">
 	{% csrf_token %}
-	{{ form }}
 	<div id="jobselector">
 		<select required class="majorgroup" id="Major group">
 			{% for category in majorgroups %}
@@ -16,7 +15,7 @@
 			{% endfor %}
 		</select>
 	
-		<select required class="minorgroup" id="minorgrou">
+		<select required class="minorgroup" id="minorgroup">
 			{% for majorgroup in majorgroups %}
 			{% for category in majorgroup.minorgroup_set.all %}
 			<option value="{{category.code}}">{{category.prettyname}}</option>
@@ -24,7 +23,7 @@
 			{% endfor %}
 		</select>
 
-		<select required id="{{minor_group.code}}_broad_group">
+		<select required class="broadgroup" id="broadgroup">
 			{% for majorgroup in majorgroups %}
 			{% for minorgroup in majorgroup.minorgroup_set.all %}
 			{% for category in minorgroup.broadgroup_set.all %}

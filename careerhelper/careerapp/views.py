@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 
-#from .forms import CareerForm
+from .models import MajorGroup
 
 # Create your views here.
 
@@ -9,7 +9,8 @@ def homepage_redirect(request):
     return HttpResponseRedirect("/app/")
 
 def homepage(request):
-    return HttpResponse("Hello there. You've found the recommender page.")
+    context = { 'majorgroups': MajorGroup.objects.all() }
+    return render(request, 'careerapp/careerhelper/homepage.html', context)
 
 #def homepage(request):
     """
