@@ -3,15 +3,15 @@ from django.db import models
 # Create your models here.
 
 class Scale(models.Model):
-    code = models.CharField(primary_key=True)
-    name = models.CharField()
+    code = models.CharField(primary_key=True, max_length=2)
+    name = models.CharField(max_length=100)
     min = models.IntegerField()
     max = models.IntegerField()
 
 class SOCEntity(models.Model):
-    code = models.CharField(primary_key=True)
-    name = models.CharField()
-    description = models.CharField()
+    code = models.CharField(primary_key=True, max_length=7)
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=500)
 
 class JobGroup(SOCEntity):
     def isaMajorGroup():
@@ -19,31 +19,30 @@ class JobGroup(SOCEntity):
     def isaMinorGroup():
         return code[-3:] == "000"
     def isaBroadGroup():
-        return code[-1:] == "0":
-    pass
+        return code[-1:] == "0"
 
 class MajorGroup(JobGroup):
     pass
 
 class MinorGroup(JobGroup):
-    majorgroup = models.ForeignKey('MajorGroup')
+    super_majorgroup = models.ForeignKey('MajorGroup')
 
 class BroadGroup(JobGroup):
-    minorgroup = models.ForeignKey('MinorGroup')
+    super_minorgroup = models.ForeignKey('MinorGroup')
 
 class Job(SOCEntity):
-    broadgroup = models.ForeignKey('BroadGroup')
+    super_broadgroup = models.ForeignKey('BroadGroup')
 
 class EducationRaw(models.Model):
-    code = models.CharField(primary_key=True)
-    title = models.CharField()
-    description = models.CharField()
+    code = models.CharField(primary_key=True, max_length=7)
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length=500)
     #crosscode = ?????? #determine this if needed
 
 class WorkerQuality(models.Model):
-    code = models.CharField(primary_key=True)
-    name = models.CharField()
-    description = models.CharField()
+    code = models.CharField(primary_key=True, max_length=9)
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=100)
 
 class JobRating(models.Model):
     job = models.ForeignKey('Job')
@@ -55,18 +54,16 @@ class JobRating(models.Model):
     upperbound = models.FloatField()
     suppress = models.BooleanField()
     irrelevant = models.BooleanField()
-    date = models.CharField()
-    source = models.CharField()
 
 class MindsumoSample(models.Model):
-    name = models.CharField(primary_key=True)
+    name = models.CharField(primary_key=True, max_length=40)
     
 class MindsumoCellRaw(models.Model):
     jobcode = models.ForeignKey('Job')
-    sample = models.CharField()
+    sample = models.ForeignKey('MindsumoSample')
     education = models.ForeignKey('EducationRaw')
-    n = models.ForeignKey('MindsumoSample') 
+    n = models.IntegerField()
 
 class JobRelation(models.Model):
     job = models.ForeignKey('Job')
-    relatedJob = models.ForeignKey('Job')
+    relatedJob = models.ForeignKey('Job', related_name='related_job')
