@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 
-from .models import MajorGroup
+from careerapp.models import MajorGroup
 
 # Create your views here.
 
@@ -10,7 +10,10 @@ def homepage_redirect(request):
 
 def homepage(request):
     context = { 'majorgroups': MajorGroup.objects.all() }
-    return render(request, 'careerapp/careerhelper/homepage.html', context)
+    return render(request, 'homepage.html', context)
+
+def test(request):
+    return HttpResponse("You did it!")
 
 #def homepage(request):
     """
