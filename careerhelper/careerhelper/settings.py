@@ -57,7 +57,10 @@ ROOT_URLCONF = 'careerhelper.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [
+                os.path.join(BASE_DIR, 'templates'),
+                os.path.join(os.environ["VIRTUAL_ENV"], 'lib/python3.4/site-packages/django/contrib/admin/templates')
+            ],
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',

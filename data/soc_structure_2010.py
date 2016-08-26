@@ -2,25 +2,12 @@ import csv
 import sys
 import os
 
-def tests(cwd):
-    if len(sys.argv) != 3:
-        raise ValueError('Takes exactly two arguments: infolder and outfolder.')
-
-    args = sys.argv[1:]
-    for folder in args:
-        if not os.path.isdir(os.path.join(cwd, folder)):
-            raise NotADirectoryError("Argument '" ++ folder ++
-                    "' is not a valid subdirectory of the working " ++
-                    "directory.")
-
-    if not os.path.isfile(os.path.join(cwd, sys.argv[1] + '/soc_structure_2010.csv')):
-        raise FileNotFoundError("'soc_structure_2010.csv' does not exist in the input folder.")
+import tests
 
 def main():
     firstdataline = 14 # was manually determined by reading the file
-    cwd = os.getcwd()
 
-    tests(cwd)
+    tests.properArgsCheck(sys.argv, os.getcwd())
     
     infolder = sys.argv[1]
     outfolder = sys.argv[2]

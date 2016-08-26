@@ -1,0 +1,1 @@
+Raw is for raw data. Cooked is for processed data. Goodtogo is for data that needs no processing prior to the Django db import. Processing scripts should be placed within data and named after the files they will process. 
