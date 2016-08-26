@@ -13,7 +13,7 @@ def tests(cwd):
                     "' is not a valid subdirectory of the working " ++
                     "directory.")
 
-    if not os.path.isfile(os.path.join(cwd, infolder + '/soc_structure_2010.csv'):
+    if not os.path.isfile(os.path.join(cwd, sys.argv[1] + '/soc_structure_2010.csv')):
         raise FileNotFoundError("'soc_structure_2010.csv' does not exist in the input folder.")
 
 def main():
@@ -42,7 +42,7 @@ def main():
         rowCount = 0
         for row in csvreader:
             rowCount += 1 
-            if rowCount >= firstdataline
+            if rowCount >= firstdataline:
                 name = row[4]
                 if row[0] != '':
                     majors.append(row[0] + ',' + name)
