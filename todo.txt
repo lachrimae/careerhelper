@@ -1,1 +1,3 @@
-get stuff not 404ing
+Now what we need to do is set up a "source resolver" so when /app/src/(view-name-here) gets requested we do a reverse lookup of view-name and thus discover its .js and .html and etc in /templates/careerapp/view-name.extension
+
+Setup raw -> cooked scripts for all the .txt and .csv imports. Setup Django imports to migrate these to the db models.
