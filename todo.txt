@@ -1,1 +1,3 @@
 Setup raw -> cooked scripts for all the .txt and .csv imports. Setup Django imports to migrate these to the db models.
+
+Write a style.css for base.html, place in careerhelper/static. 

@@ -5,9 +5,6 @@ from careerapp.models import MajorGroup
 
 # Create your views here.
 
-def src_resolver(request, ):
-    return HttpResponseRedirect
-
 def homepage_redirect(request):
     return HttpResponseRedirect("/app/")
 
