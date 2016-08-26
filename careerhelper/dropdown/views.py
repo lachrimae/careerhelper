@@ -12,7 +12,7 @@ def json(request, majorcode, remainder):
     try:
         response = getJSON(code)
     except:
-        raise Http404("SOC Entity does not exist.")
+        raise Http404("SOC Entity " + code + " does not exist.")
     return HttpResponse(response)
 
 @require_GET
