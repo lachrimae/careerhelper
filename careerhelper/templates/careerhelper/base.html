@@ -2,15 +2,21 @@
 <html lang="en">
 <head>
 	{% block stylesheets %}
-	<link rel="stylesheet" href="style.css" />
+	{% load static %}
+	<link rel="stylesheet" href="{% static "careerhelper/style.css" %}" />
 	{% endblock %}
 	<title>{% block title %}Career Helper{% endblock %}</title>
 </head>
 <body>
+
+{% block scripts %}
+{% endblock %}
+
 <div id="content">
 {% block content %}
 {% endblock %}
 </div>
+
 <div id="titlebar">
 <!-- FILL IN THE TITLE SECTION HERE -->
 </div>
